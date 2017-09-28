@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86B8F93C-C8B1-432F-B7D4-2D43BF1475C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DawnOfIndustryPower</RootNamespace>
+    <AssemblyName>DawnOfIndustryPower</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="ReLogic">
+      <HintPath>..\..\..\tModLoader\references\ReLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria Modded\Terraria.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DawnOfIndustryPower.cs" />
+    <Compile Include="DoIPPlayer.cs" />
+    <Compile Include="Items\EnergyVoid.cs" />
+    <Compile Include="Items\Generators\CoalPlant.cs" />
+    <Compile Include="Items\Generators\GeothermalPlant.cs" />
+    <Compile Include="Items\Generators\SolarPanel.cs" />
+    <Compile Include="Items\Generators\WaterTurbine.cs" />
+    <Compile Include="Items\Generators\WindTurbine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TileEntities\Generators\BaseGenerator.cs" />
+    <Compile Include="TileEntities\Generators\TECoalPlant.cs" />
+    <Compile Include="TileEntities\Generators\TEGeothermalPlant.cs" />
+    <Compile Include="TileEntities\Generators\TESolarPanel.cs" />
+    <Compile Include="TileEntities\Generators\TEWaterTurbine.cs" />
+    <Compile Include="TileEntities\Generators\TEWindTurbine.cs" />
+    <Compile Include="TileEntities\TEEnergyVoid.cs" />
+    <Compile Include="Tiles\EnergyVoid.cs" />
+    <Compile Include="Tiles\Generators\CoalPlant.cs" />
+    <Compile Include="Tiles\Generators\GeothermalPlant.cs" />
+    <Compile Include="Tiles\Generators\SolarPanel.cs" />
+    <Compile Include="Tiles\Generators\WaterTurbine.cs" />
+    <Compile Include="Tiles\Generators\WindTurbine.cs" />
+    <Compile Include="UI\CoalPlantUI.cs" />
+    <Compile Include="UI\GeothermalPlantUI.cs" />
+    <Compile Include="UI\SolarPanelUI.cs" />
+    <Compile Include="UI\WaterTurbineUI.cs" />
+    <Compile Include="UI\WindTurbineUI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseLib\BaseLib.csproj">
+      <Project>{6812d262-8588-4999-a01d-a6ddc71ed4c0}</Project>
+      <Name>BaseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContainerLib2\ContainerLib2.csproj">
+      <Project>{36037a05-1331-4920-9222-91d3007df107}</Project>
+      <Name>ContainerLib2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DawnOfIndustryCore\DawnOfIndustryCore.csproj">
+      <Project>{7f695a6c-c03d-4734-a27e-459ed3b0ddd5}</Project>
+      <Name>DawnOfIndustryCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyLib\EnergyLib.csproj">
+      <Project>{8664c658-9619-4ea2-9f3c-4ec31fbf8c99}</Project>
+      <Name>EnergyLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="build.txt" />
+    <Content Include="description.txt" />
+    <Content Include="Textures\Placeholder.png" />
+    <Content Include="Textures\Tiles\WindTurbine.png" />
+    <Content Include="Textures\Tiles\WindTurbineBlade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Items\Storage\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\Terraria Modded\tModLoaderServer.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>
