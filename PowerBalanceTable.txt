@@ -1,0 +1,5 @@
+Wind Turbine - 0-(1200/1800/2400)W (Cap: 100k, IO: 5k)
+Water Turbine - 0-5000W (50W/water tile) (Cap: 250k, IO: 10k)
+Solar Panel - 0-1000W (Cap: 50k, IO: 2.5k)
+Geothermal Power Plant - 0-22500W (150W/lava tile) (Cap: 1M, IO: 25k)
+Coal Power Plant - 0-1000W (Cap: 100k, IO: 5k)
