@@ -2,13 +2,15 @@
 using DawnOfIndustryPower.Tiles.Generators;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
+using ContainerLib2.Container;
 using Terraria;
 using Terraria.ID;
 using static BaseLib.Utility.Utility;
 
 namespace DawnOfIndustryPower.TileEntities.Generators
 {
-	public class TECoalPlant : BaseGenerator
+	public class TECoalPlant : BaseGenerator, ISidedContainer
 	{
 		public long energyLeft;
 		public long maxEnergy;
@@ -37,12 +39,12 @@ namespace DawnOfIndustryPower.TileEntities.Generators
 		{
 			if (energyLeft == 0)
 			{
-				if (DawnOfIndustryPower.Instance.burnValues.ContainsKey(GetItem(0).type))
+				if (DawnOfIndustryPower.Instance.burnValues.ContainsKey(Items[0].type))
 				{
-					maxEnergy = DawnOfIndustryPower.Instance.burnValues[GetItem(0).type];
+					maxEnergy = DawnOfIndustryPower.Instance.burnValues[Items[0].type];
 					energyLeft = maxEnergy;
-					GetItem(0).stack--;
-					if (GetItem(0).stack == 0) GetItem(0).TurnToAir();
+					Items[0].stack--;
+					if (Items[0].stack == 0) Items[0].TurnToAir();
 				}
 				else
 				{
@@ -52,10 +54,16 @@ namespace DawnOfIndustryPower.TileEntities.Generators
 			}
 			else
 			{
-				energyGen = Math.Min(Math.Min(energyLeft, 1000), energy.GetCapacity() - energy.GetEnergyStored());
+				energyGen = Math.Min(Math.Min(energyLeft, 1000), energy.GetCapacity() - energy.GetEnergy());
 				energyLeft -= energyGen;
 				energy.ModifyEnergyStored(energyGen);
 			}
 		}
+
+		public IList<Item> GetInputSlots() => Items;
+
+		public IList<Item> GetOutputSlots() => new List<Item>();
+
+		public IList<Item> GetItems() => Items;
 	}
 }

@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DawnOfIndustryPower.cs" />
-    <Compile Include="DoIPPlayer.cs" />
     <Compile Include="Items\EnergyVoid.cs" />
     <Compile Include="Items\Generators\CoalPlant.cs" />
     <Compile Include="Items\Generators\GeothermalPlant.cs" />

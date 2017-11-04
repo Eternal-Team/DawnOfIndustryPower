@@ -28,7 +28,7 @@ namespace DawnOfIndustryPower.TileEntities.Generators
 		public override void Update()
 		{
 			int reverseHeight = Main.maxTilesY - Position.Y + 1;
-			energyGen = Math.Min(reverseHeight, energy.GetCapacity() - energy.GetEnergyStored());
+			energyGen = Math.Min(reverseHeight, energy.GetCapacity() - energy.GetEnergy());
 
 			//energy.ModifyEnergyStored(energyGen);
 

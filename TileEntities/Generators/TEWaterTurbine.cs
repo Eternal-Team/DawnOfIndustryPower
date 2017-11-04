@@ -42,7 +42,7 @@ namespace DawnOfIndustryPower.TileEntities.Generators
 				waterScanTimer = 0;
 			}
 
-			energyGen = (long)Math.Min(waterVolume / 255f * 50, energy.GetCapacity() - energy.GetEnergyStored());
+			energyGen = (long)Math.Min(waterVolume / 255f * 50, energy.GetCapacity() - energy.GetEnergy());
 
 			this.HandleUIFar();
 		}

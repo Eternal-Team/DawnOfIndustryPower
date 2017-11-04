@@ -31,8 +31,8 @@ namespace DawnOfIndustryPower.TileEntities
 
 		public long ReceiveEnergy(long maxReceive) => energyStorage.ReceiveEnergy(maxReceive);
 
-		public long GetEnergyStored() => energyStorage.GetEnergyStored();
+		public long GetEnergy() => energyStorage.GetEnergy();
 
-		public long GetMaxEnergyStored() => energyStorage.GetCapacity();
+		public long GetCapacity() => energyStorage.GetCapacity();
 	}
 }

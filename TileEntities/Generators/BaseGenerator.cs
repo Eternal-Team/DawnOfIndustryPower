@@ -1,6 +1,5 @@
 ﻿using BaseLib;
 using ContainerLib2;
-using ContainerLib2.Container;
 using EnergyLib.Energy;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +9,7 @@ using Terraria.ModLoader.IO;
 
 namespace DawnOfIndustryPower.TileEntities.Generators
 {
-	public abstract class BaseGenerator : BaseTE, IContainerTile, IEnergyProvider
+	public abstract class BaseGenerator : BaseTE, IEnergyProvider
 	{
 		public IList<Item> Items = new List<Item>();
 		public EnergyStorage energy = new EnergyStorage(1000);
@@ -35,14 +34,14 @@ namespace DawnOfIndustryPower.TileEntities.Generators
 
 		public override void OnNetPlace() => OnPlace();
 
-		public IList<Item> GetItems() => Items;
-
-		public Item GetItem(int slot) => Items[slot];
-
-		public void SetItem(Item item, int slot) => Items[slot] = item;
-
 		public ModTileEntity GetTileEntity() => this;
 
+		public long GetEnergy() => energy.GetEnergy();
+
+		public long GetCapacity() => energy.GetCapacity();
+
 		public EnergyStorage GetEnergyStorage() => energy;
+
+		public long ExtractEnergy(long maxExtract) => energy.ExtractEnergy(maxExtract);
 	}
 }

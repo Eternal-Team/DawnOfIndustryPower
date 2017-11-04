@@ -3,6 +3,7 @@ using BaseLib.UI;
 using DawnOfIndustryPower.TileEntities.Generators;
 using Microsoft.Xna.Framework;
 using System;
+using EnergyLib;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -15,9 +16,9 @@ namespace DawnOfIndustryPower.UI
 		public TEWindTurbine turbine;
 
 		public UIText textLabel = new UIText("Wind Turbine");
-		public UIEnergyBar barEnergy = new UIEnergyBar();
 
 		public UIPanel panelInfo = new UIPanel();
+		public UIEnergyBar barEnergy = new UIEnergyBar();
 		public UIText textGeneration = new UIText("Generating:");
 		public UIText textEfficiency = new UIText("Efficiency:");
 
@@ -57,13 +58,15 @@ namespace DawnOfIndustryPower.UI
 			panelInfo.Append(textEfficiency);
 		}
 
+		public override void Load()
+		{
+			barEnergy.energy = turbine.energy;
+		}
+
 		public override void Update(GameTime gameTime)
 		{
-			barEnergy.power = turbine.energy.GetEnergyStored();
-			barEnergy.maxPower = turbine.energy.GetCapacity();
-
-			textGeneration.SetText($"Generating: {turbine.energyGen.ToSI()}W");
-			textEfficiency.SetText($"Efficiency: {Math.Round((turbine.energyGen / (float)Main.maxTilesY) * 100, 2)}%");
+			textGeneration.SetText($"Generating: {turbine.energyGen.AsPower(true)}");
+			textEfficiency.SetText($"Efficiency: {Math.Round(turbine.energyGen / (float)Main.maxTilesY * 100, 2)}%");
 
 			textGeneration.Recalculate();
 			textEfficiency.Recalculate();

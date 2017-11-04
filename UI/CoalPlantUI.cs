@@ -1,7 +1,7 @@
-﻿using BaseLib.Elements;
-using BaseLib.UI;
+﻿using BaseLib.UI;
 using ContainerLib2.Container;
 using DawnOfIndustryPower.TileEntities.Generators;
+using EnergyLib;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -64,14 +64,13 @@ namespace DawnOfIndustryPower.UI
 			slotFuel.Left.Pixels = 8;
 			slotFuel.Top.Pixels = 64;
 			panelInfo.Append(slotFuel);
+
+			barEnergy.energy = coalPlant.energy;
 		}
 
 		public override void Update(GameTime gameTime)
 		{
-			barEnergy.power = coalPlant.energy.GetEnergyStored();
-			barEnergy.maxPower = coalPlant.energy.GetCapacity();
-
-			textGeneration.SetText($"Generating: {coalPlant.energyGen.ToSI()}W");
+			textGeneration.SetText($"Generating: {coalPlant.energyGen.AsPower(true)}");
 			textBurnTime.SetText($"Energy Left: {coalPlant.energyLeft.ToSI()}/{coalPlant.maxEnergy.ToSI()}");
 
 			textGeneration.Recalculate();

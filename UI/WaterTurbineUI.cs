@@ -1,6 +1,6 @@
-﻿using BaseLib.Elements;
-using BaseLib.UI;
+﻿using BaseLib.UI;
 using DawnOfIndustryPower.TileEntities.Generators;
+using EnergyLib;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -14,10 +14,10 @@ namespace DawnOfIndustryPower.UI
 	{
 		public TEWaterTurbine turbine;
 
-		public UIEnergyBar barEnergy = new UIEnergyBar();
 		public UIText textLabel = new UIText("Water Turbine");
 
 		public UIPanel panelInfo = new UIPanel();
+		public UIEnergyBar barEnergy = new UIEnergyBar();
 		public UIText textGeneration = new UIText("Generating:");
 		public UIText textWaterTiles = new UIText("Water Tiles:");
 
@@ -58,12 +58,14 @@ namespace DawnOfIndustryPower.UI
 			panelInfo.Append(textWaterTiles);
 		}
 
+		public override void Load()
+		{
+			barEnergy.energy = turbine.energy;
+		}
+
 		public override void Update(GameTime gameTime)
 		{
-			barEnergy.power = turbine.energy.GetEnergyStored();
-			barEnergy.maxPower = turbine.energy.GetCapacity();
-
-			textGeneration.SetText($"Generating: {turbine.energyGen.ToSI()}W");
+			textGeneration.SetText($"Generating: {turbine.energyGen.AsPower(true)}");
 			textWaterTiles.SetText($"Water Tiles: {Math.Round(turbine.waterVolume / 255f, 0)}/{TEWaterTurbine.MaxWaterTiles}");
 
 			textGeneration.Recalculate();

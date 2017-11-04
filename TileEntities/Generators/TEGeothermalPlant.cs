@@ -1,20 +1,16 @@
 ﻿using BaseLib.Utility;
-using DawnOfIndustryCore.Tiles;
+using DawnOfIndustryCore.Heat.HeatStorage;
 using DawnOfIndustryPower.Tiles.Generators;
 using System;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader.IO;
 
 namespace DawnOfIndustryPower.TileEntities.Generators
 {
-	public class TEGeothermalPlant : BaseGenerator
+	public class TEGeothermalPlant : BaseGenerator, IHeatReceiver
 	{
-		public int lavaScanTimer;
-		public int lavaVolume;
-
-		public const int MaxLavaTiles = 150;
+		public HeatStorage heat = new HeatStorage(1000000, 5000);
 
 		public override bool ValidTile(Tile tile) => tile.type == mod.TileType<GeothermalPlant>() && tile.TopLeft();
 
@@ -37,58 +33,31 @@ namespace DawnOfIndustryPower.TileEntities.Generators
 
 		public override void Update()
 		{
-			if (++lavaScanTimer >= 150)
-			{
-				lavaVolume = GetLavaVolume(Position + new Point16(2, 2));
-				lavaScanTimer = 0;
-			}
+			energyGen = Math.Min(Math.Min(heat.GetHeat(), heat.GetMaxExtract()) * DawnOfIndustryPower.FluxPerHU, energy.GetCapacity() - energy.GetEnergy());
 
-			energyGen = (long)Math.Min(lavaVolume / 255f * 150, energy.GetCapacity() - energy.GetEnergyStored());
-
-			//energy.ModifyEnergyStored(generation);
+			heat.ModifyHeatStored(-energyGen / DawnOfIndustryPower.FluxPerHU);
+			energy.ModifyEnergyStored(energyGen);
 
 			this.HandleUIFar();
 		}
 
-		public static IEnumerable<Point16> CheckNeighbours(Point16 point)
+		public override TagCompound Save()
 		{
-			List<Point16> points = new List<Point16>();
-
-			IEnumerable<Point16> neighbours = Utility.CheckNeighbours();
-
-			foreach (Point16 add in neighbours)
-			{
-				int checkX = point.X + add.X;
-				int checkY = point.Y + add.Y;
-				Tile tile = Main.tile[checkX, checkY];
-				if (!tile.active() && tile.liquidType() == Tile.Liquid_Lava && tile.liquid > 0 || tile.active() && tile.type == DawnOfIndustryCore.DawnOfIndustryCore.Instance.TileType<HeatPipe>()) points.Add(new Point16(checkX, checkY));
-			}
-			return points;
+			TagCompound tag = base.Save();
+			tag["Heat"] = heat;
+			return tag;
 		}
 
-		public static int GetLavaVolume(Point16 start)
+		public override void Load(TagCompound tag)
 		{
-			int volume = 0;
-
-			HashSet<Point16> explored = new HashSet<Point16>();
-			explored.Add(start);
-			Queue<Point16> toExplore = new Queue<Point16>();
-			foreach (Point16 point in CheckNeighbours(start)) toExplore.Enqueue(point);
-
-			while (toExplore.Count > 0)
-			{
-				Point16 explore = toExplore.Dequeue();
-				if (!explored.Contains(explore))
-				{
-					explored.Add(explore);
-
-					Tile tile = Main.tile[explore.X, explore.Y];
-					if (tile.liquidType() == Tile.Liquid_Lava && tile.liquid > 0) volume += tile.liquid;
-					else if (tile.active() && tile.type == DawnOfIndustryCore.DawnOfIndustryCore.Instance.TileType<HeatPipe>()) foreach (Point16 point in CheckNeighbours(explore)) toExplore.Enqueue(point);
-				}
-			}
-
-			return volume;
+			base.Load(tag);
+			heat = tag.Get<HeatStorage>("Heat");
 		}
+
+		public long GetHeat() => heat.GetHeat();
+
+		public HeatStorage GetHeatStorage() => heat;
+
+		public long ReceiveHeat(long maxReceive) => heat.ReceiveHeat(maxReceive);
 	}
 }

@@ -28,7 +28,7 @@ namespace DawnOfIndustryPower.TileEntities.Generators
 		public override void Update()
 		{
 			float eff = Main.dayTime ? (float)(Main.time < 13500 ? Main.time / 13500 : 13500 / (Main.time - 13500)) : 0;
-			energyGen = Math.Min((long)(1000 * eff), energy.GetCapacity() - energy.GetEnergyStored());
+			energyGen = Math.Min((long)(1000 * eff), energy.GetCapacity() - energy.GetEnergy());
 
 			energy.ModifyEnergyStored(10);
 

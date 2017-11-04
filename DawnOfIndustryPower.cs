@@ -17,6 +17,7 @@ namespace DawnOfIndustryPower
 
 		public IDictionary<ModTileEntity, GUI> TEUI = new Dictionary<ModTileEntity, GUI>();
 
+		public const long FluxPerHU = 1;
 		public Dictionary<int, long> burnValues = new Dictionary<int, long>();
 
 		public DawnOfIndustryPower()

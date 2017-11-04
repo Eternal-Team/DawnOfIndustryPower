@@ -1,8 +1,8 @@
-﻿using System;
-using BaseLib.Elements;
-using BaseLib.UI;
+﻿using BaseLib.UI;
 using DawnOfIndustryPower.TileEntities.Generators;
+using EnergyLib;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -58,12 +58,14 @@ namespace DawnOfIndustryPower.UI
 			panelInfo.Append(textEfficiency);
 		}
 
+		public override void Load()
+		{
+			barEnergy.energy = panel.energy;
+		}
+
 		public override void Update(GameTime gameTime)
 		{
-			barEnergy.power = panel.energy.GetEnergyStored();
-			barEnergy.maxPower = panel.energy.GetCapacity();
-
-			textGeneration.SetText($"Generating: {panel.energyGen.ToSI()}W");
+			textGeneration.SetText($"Generating: {panel.energyGen.AsPower(true)}");
 			float eff = Main.dayTime ? (float)(Main.time < 13500 ? Main.time / 13500 : 13500 / (Main.time - 13500)) * 100 : 0;
 			textEfficiency.SetText($"Efficiency: {Math.Round(eff, 2)}%");
 
