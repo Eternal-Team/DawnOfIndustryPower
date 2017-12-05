@@ -1,11 +1,11 @@
-﻿using BaseLib;
-using ContainerLib2;
-using EnergyLib.Energy;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using TheOneLibrary.Base;
+using TheOneLibrary.Energy.Energy;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.TileEntities.Generators
 {

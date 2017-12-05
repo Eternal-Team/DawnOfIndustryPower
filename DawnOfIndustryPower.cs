@@ -1,21 +1,22 @@
-﻿using BaseLib;
-using BaseLib.UI;
-using BaseLib.Utility;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using TheOneLibrary.Base;
+using TheOneLibrary.Base.UI;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower
 {
-	public class DawnOfIndustryPower : Mod, IMod
+	public class DawnOfIndustryPower : Mod
 	{
 		public static DawnOfIndustryPower Instance;
 
 		public const string PlaceholderTexturePath = "DawnOfIndustryCore/Textures/Placeholder";
 		public const string TileTexturePath = "DawnOfIndustryPower/Textures/Tiles/";
 
-		public IDictionary<ModTileEntity, GUI> TEUI = new Dictionary<ModTileEntity, GUI>();
+		[UI("TileEntity")]
+		public Dictionary<ModTileEntity, GUI> TEUI = new Dictionary<ModTileEntity, GUI>();
 
 		public const long FluxPerHU = 1;
 		public Dictionary<int, long> burnValues = new Dictionary<int, long>();
@@ -64,7 +65,7 @@ namespace DawnOfIndustryPower
 			if (MouseTextIndex != -1)
 			{
 				layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer(
-					"StorageRefinements: UI",
+					"DoIPower: TileEntity",
 					delegate
 					{
 						TEUI.Values.Draw();
@@ -75,7 +76,5 @@ namespace DawnOfIndustryPower
 				);
 			}
 		}
-
-		public IDictionary<ModTileEntity, GUI> GetTEUIs() => TEUI;
 	}
 }

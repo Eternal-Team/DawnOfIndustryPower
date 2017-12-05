@@ -2,7 +2,7 @@
 using System;
 using Terraria;
 using Terraria.ID;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.TileEntities.Generators
 {

@@ -1,9 +1,9 @@
-﻿using BaseLib;
-using DawnOfIndustryPower.Tiles;
-using EnergyLib.Energy;
+﻿using DawnOfIndustryPower.Tiles;
 using Terraria;
 using Terraria.ID;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Base;
+using TheOneLibrary.Energy.Energy;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.TileEntities
 {

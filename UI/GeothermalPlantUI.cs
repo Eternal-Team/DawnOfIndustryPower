@@ -1,16 +1,15 @@
-﻿using BaseLib.UI;
-using DawnOfIndustryCore.UI;
-using DawnOfIndustryPower.TileEntities.Generators;
-using EnergyLib;
+﻿using DawnOfIndustryPower.TileEntities.Generators;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Base.UI;
+using TheOneLibrary.UI.Elements;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.UI
 {
-	public class GeothermalPlantUI : BaseUI, TileEntityUI
+	public class GeothermalPlantUI : BaseUI, ITileEntityUI
 	{
 		public TEGeothermalPlant geothermalPlant;
 
@@ -70,7 +69,7 @@ namespace DawnOfIndustryPower.UI
 			barEnergy.energy = geothermalPlant.energy;
 			barHeat.heat = geothermalPlant.heat;
 		}
-		
+
 		public override void Update(GameTime gameTime)
 		{
 			textGeneration.SetText($"Generating: {geothermalPlant.energyGen.AsPower(true)}");

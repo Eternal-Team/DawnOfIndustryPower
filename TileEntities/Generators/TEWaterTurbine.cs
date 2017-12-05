@@ -1,10 +1,9 @@
-﻿using BaseLib.Utility;
-using DawnOfIndustryPower.Tiles.Generators;
+﻿using DawnOfIndustryPower.Tiles.Generators;
 using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.TileEntities.Generators
 {
@@ -36,8 +35,8 @@ namespace DawnOfIndustryPower.TileEntities.Generators
 		{
 			if (++waterScanTimer >= 150)
 			{
-				Point16 start = GetDirection(Position.X, Position.Y, Main.tile[Position.X, Position.Y].type) == Terraria.Enums.TileObjectDirection.PlaceLeft ? new Point16(Position.X - 1, Position.Y + 1) : new Point16(Position.X + 3, Position.Y + 1);
-				Trace(start, tile => !tile.active() && tile.liquidType() == Tile.Liquid_Water && tile.liquid > 0, tile => waterVolume += tile.liquidType() == Tile.Liquid_Water ? tile.liquid : 0);
+				Point16 start = Utility.GetDirection(Position.X, Position.Y, Main.tile[Position.X, Position.Y].type) == Terraria.Enums.TileObjectDirection.PlaceLeft ? new Point16(Position.X - 1, Position.Y + 1) : new Point16(Position.X + 3, Position.Y + 1);
+				Utility.Trace(start, tile => !tile.active() && tile.liquidType() == Tile.Liquid_Water && tile.liquid > 0, tile => waterVolume += tile.liquidType() == Tile.Liquid_Water ? tile.liquid : 0);
 				waterVolume = Math.Min(waterVolume, 255 * 100);
 				waterScanTimer = 0;
 			}

@@ -6,19 +6,13 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Base;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.Tiles.Generators
 {
-	public class WaterTurbine : ModTile
+	public class WaterTurbine : BaseTile
 	{
-		public override bool Autoload(ref string name, ref string texture)
-		{
-			texture = DawnOfIndustryPower.PlaceholderTexturePath;
-			//texture = DawnOfIndustryPower.TileTexturePath + "WaterTurbine";
-			return base.Autoload(ref name, ref texture);
-		}
-
 		public override void SetDefaults()
 		{
 			Main.tileSolid[Type] = true;

@@ -1,16 +1,15 @@
-﻿using BaseLib.UI;
-using ContainerLib2.Container;
-using DawnOfIndustryPower.TileEntities.Generators;
-using EnergyLib;
+﻿using DawnOfIndustryPower.TileEntities.Generators;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Base.UI;
+using TheOneLibrary.UI.Elements;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.UI
 {
-	public class CoalPlantUI : BaseUI, TileEntityUI
+	public class CoalPlantUI : BaseUI, ITileEntityUI
 	{
 		public TECoalPlant coalPlant;
 

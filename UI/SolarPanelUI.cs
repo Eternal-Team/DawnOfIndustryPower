@@ -1,16 +1,16 @@
-﻿using BaseLib.UI;
-using DawnOfIndustryPower.TileEntities.Generators;
-using EnergyLib;
+﻿using DawnOfIndustryPower.TileEntities.Generators;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Base.UI;
+using TheOneLibrary.UI.Elements;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.UI
 {
-	public class SolarPanelUI : BaseUI, TileEntityUI
+	public class SolarPanelUI : BaseUI, ITileEntityUI
 	{
 		public TESolarPanel panel;
 

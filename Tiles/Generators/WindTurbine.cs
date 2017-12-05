@@ -7,11 +7,12 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Base;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.Tiles.Generators
 {
-	public class WindTurbine : ModTile
+	public class WindTurbine : BaseTile
 	{
 		public override bool Autoload(ref string name, ref string texture)
 		{
@@ -66,7 +67,7 @@ namespace DawnOfIndustryPower.Tiles.Generators
 			Tile tile = Main.tile[i, j];
 			int x = tile.TopLeft() ? i : 0;
 			int y = tile.TopLeft() ? j : 0;
-			
+
 			Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
 			if (Main.drawToScreen) zero = Vector2.Zero;
 			Vector2 position = new Vector2(x * 16 - (int)Main.screenPosition.X + 24, y * 16 - (int)Main.screenPosition.Y + 24) + zero;

@@ -1,10 +1,10 @@
-﻿using BaseLib.Utility;
-using DawnOfIndustryCore.Heat.HeatStorage;
-using DawnOfIndustryPower.Tiles.Generators;
+﻿using DawnOfIndustryPower.Tiles.Generators;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader.IO;
+using TheOneLibrary.Heat.Heat;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.TileEntities.Generators
 {

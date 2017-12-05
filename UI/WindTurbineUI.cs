@@ -1,17 +1,16 @@
-﻿using BaseLib.Elements;
-using BaseLib.UI;
-using DawnOfIndustryPower.TileEntities.Generators;
+﻿using DawnOfIndustryPower.TileEntities.Generators;
 using Microsoft.Xna.Framework;
 using System;
-using EnergyLib;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
-using static BaseLib.Utility.Utility;
+using TheOneLibrary.Base.UI;
+using TheOneLibrary.UI.Elements;
+using TheOneLibrary.Utility;
 
 namespace DawnOfIndustryPower.UI
 {
-	public class WindTurbineUI : BaseUI, TileEntityUI
+	public class WindTurbineUI : BaseUI, ITileEntityUI
 	{
 		public TEWindTurbine turbine;
 

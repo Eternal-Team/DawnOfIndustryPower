@@ -1,5 +1,5 @@
-﻿using BaseLib.Items;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
+using TheOneLibrary.Base.Items;
 
 namespace DawnOfIndustryPower.Items
 {

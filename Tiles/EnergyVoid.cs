@@ -4,18 +4,12 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using TheOneLibrary.Base;
 
 namespace DawnOfIndustryPower.Tiles
 {
-	public class EnergyVoid : ModTile
+	public class EnergyVoid : BaseTile
 	{
-		public override bool Autoload(ref string name, ref string texture)
-		{
-			texture = DawnOfIndustryPower.PlaceholderTexturePath;
-			//texture = DawnOfIndustryPower.TileTexturePath + "EnergyVoid";
-			return base.Autoload(ref name, ref texture);
-		}
-
 		public override void SetDefaults()
 		{
 			Main.tileSolid[Type] = false;
