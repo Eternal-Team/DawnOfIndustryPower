@@ -14,11 +14,7 @@ namespace DawnOfIndustryPower.Tiles.Generators
 {
 	public class WindTurbine : BaseTile
 	{
-		public override bool Autoload(ref string name, ref string texture)
-		{
-			texture = DawnOfIndustryPower.TileTexturePath + "WindTurbine";
-			return base.Autoload(ref name, ref texture);
-		}
+		public override string Texture => DawnOfIndustryPower.TileTexturePath + "WindTurbine";
 
 		public override void SetDefaults()
 		{
