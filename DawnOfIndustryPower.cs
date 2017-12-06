@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -10,8 +12,10 @@ namespace DawnOfIndustryPower
 {
 	public class DawnOfIndustryPower : Mod
 	{
-		public static DawnOfIndustryPower Instance;
+		[Null] public static DawnOfIndustryPower Instance;
 
+		[Null] public static Texture2D turbineBlade;
+		
 		public const string PlaceholderTexturePath = "DawnOfIndustryCore/Textures/Placeholder";
 		public const string TileTexturePath = "DawnOfIndustryPower/Textures/Tiles/";
 
@@ -40,6 +44,8 @@ namespace DawnOfIndustryPower
 		public override void Load()
 		{
 			Instance = this;
+
+			turbineBlade = ModLoader.GetTexture("DawnOfIndustryPower/Textures/Tiles/WindTurbineBlade");
 		}
 
 		public override void PostSetupContent()
@@ -55,7 +61,9 @@ namespace DawnOfIndustryPower
 
 		public override void Unload()
 		{
-			Instance = null;
+			this.UnloadNullableTypes();
+
+			GC.Collect();
 		}
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)

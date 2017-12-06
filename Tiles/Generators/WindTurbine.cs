@@ -1,7 +1,6 @@
 ﻿using DawnOfIndustryPower.TileEntities.Generators;
 using DawnOfIndustryPower.UI;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -46,34 +45,6 @@ namespace DawnOfIndustryPower.Tiles.Generators
 			if (ID == -1) return;
 
 			DawnOfIndustryPower.Instance.HandleUI<WindTurbineUI>(ID);
-		}
-
-		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
-		{
-			Main.specX[nextSpecialDrawIndex] = i;
-			Main.specY[nextSpecialDrawIndex] = j;
-			nextSpecialDrawIndex++;
-		}
-
-		private Texture2D blade = ModLoader.GetTexture("DawnOfIndustryPower/Textures/Tiles/WindTurbineBlade");
-		private float angle;
-
-		public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
-		{
-			Tile tile = Main.tile[i, j];
-			int x = tile.TopLeft() ? i : 0;
-			int y = tile.TopLeft() ? j : 0;
-
-			Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
-			if (Main.drawToScreen) zero = Vector2.Zero;
-			Vector2 position = new Vector2(x * 16 - (int)Main.screenPosition.X + 24, y * 16 - (int)Main.screenPosition.Y + 24) + zero;
-
-			spriteBatch.Draw(blade, position, null, Color.White, MathHelper.Pi / 180f * angle, new Vector2(10, blade.Height), Vector2.One, SpriteEffects.None, 0f);
-			spriteBatch.Draw(blade, position, null, Color.White, MathHelper.Pi / 180f * (angle + 120f), new Vector2(10, blade.Height), Vector2.One, SpriteEffects.None, 0f);
-			spriteBatch.Draw(blade, position, null, Color.White, MathHelper.Pi / 180f * (angle + 240f), new Vector2(10, blade.Height), Vector2.One, SpriteEffects.None, 0f);
-
-			angle += 0.3f;
-			if (angle >= 360) angle = 0;
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
